@@ -406,7 +406,7 @@ app.post('/api/orders', optionalAuth, (req, res) => {
 
     // Apply promo code discount if valid
     let discount = 0;
-    if (promoCode && promoCode.toUpperCase() === 'CODEALPHA') {
+    if (promoCode && (promoCode.toUpperCase() === 'SAVE15' || promoCode.toUpperCase() === 'CODEALPHA')) {
       discount = Math.round(subtotal * 0.15 * 100) / 100; // 15% discount
     }
 

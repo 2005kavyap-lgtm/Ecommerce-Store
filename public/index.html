@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CodeAlpha Store - Modern E-Commerce Platform</title>
+  <title>AuraStore - Modern Tech & Lifestyle Essentials</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,9 +14,8 @@
 
   <!-- Top Announcement Bar -->
   <div class="announcement-bar">
-    <span>✨ CodeAlpha Task Project • Free Worldwide Shipping on orders over $100!</span>
-    <span>Use code <span class="badge-code">CODEALPHA</span> for 15% OFF</span>
-    <a href="https://www.codealpha.tech" target="_blank" rel="noopener">www.codealpha.tech</a>
+    <span>⚡ Free Worldwide Express Shipping on all orders over $100!</span>
+    <span>Use code <span class="badge-code">SAVE15</span> for 15% OFF</span>
   </div>
 
   <!-- Header / Navigation Bar -->
@@ -24,8 +23,8 @@
     <div class="container navbar-inner">
       <!-- Logo -->
       <a href="/index.html" class="brand-logo">
-        <div class="logo-icon">α</div>
-        <div>CodeAlpha<span class="highlight">Store</span><span class="brand-tag">Project</span></div>
+        <div class="logo-icon">⚡</div>
+        <div>Aura<span class="highlight">Store</span></div>
       </a>
 
       <!-- Search Bar -->
@@ -64,14 +63,14 @@
       <div>
         <div class="hero-pill">
           <span class="dot"></span>
-          <span>Official Task Showcase • www.codealpha.tech</span>
+          <span>New Season Collection • 2026 Edition</span>
         </div>
         <h1 class="hero-title">
           Next-Gen Essentials, <br>
           <span class="gradient-text">Engineered for Life.</span>
         </h1>
         <p class="hero-desc">
-          Discover hand-crafted tech, ergonomic gear, and timeless lifestyle essentials. Built with modern full-stack performance.
+          Discover hand-crafted tech, ergonomic workspaces, and timeless lifestyle essentials. Designed for creators and modern professionals.
         </p>
         <div class="hero-btns">
           <a href="#catalogSection" class="btn btn-primary btn-lg">
@@ -84,9 +83,9 @@
       </div>
 
       <div class="hero-feature-card">
-        <h3>⚡ CodeAlpha Features</h3>
+        <h3>⚡ Premium Shopping Experience</h3>
         <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 1rem;">
-          Full-featured e-commerce solution with dynamic cart, persistent SQLite DB, and real-time checkout.
+          Curated catalog with verified manufacturer warranties, 30-day money-back guarantee, and instant order tracking.
         </p>
         <div class="hero-stats">
           <div>
@@ -179,7 +178,7 @@
   <div class="modal-overlay" id="authModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 id="authModalTitle">Welcome to CodeAlpha</h3>
+        <h3 id="authModalTitle">Welcome to AuraStore</h3>
         <button class="modal-close-btn" id="closeAuthModalBtn">&times;</button>
       </div>
       <div class="modal-body">
@@ -204,11 +203,11 @@
           <div class="demo-account-box">
             <p>💡 Quick Test Credentials:</p>
             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-              <button type="button" class="demo-fill-btn" onclick="fillDemoAccount('demo@codealpha.com', 'password123')">
-                👤 Customer: demo@codealpha.com
+              <button type="button" class="demo-fill-btn" onclick="fillDemoAccount('demo@aurastore.com', 'password123')">
+                👤 Customer: demo@aurastore.com
               </button>
-              <button type="button" class="demo-fill-btn" onclick="fillDemoAccount('admin@codealpha.com', 'admin123')">
-                👑 Admin: admin@codealpha.com
+              <button type="button" class="demo-fill-btn" onclick="fillDemoAccount('admin@aurastore.com', 'admin123')">
+                👑 Admin: admin@aurastore.com
               </button>
             </div>
           </div>
@@ -270,18 +269,14 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <h4>CodeAlpha E-Commerce Store</h4>
+          <h4>AuraStore</h4>
           <p>
-            An end-to-end e-commerce store with product listings, dedicated product pages, shopping cart, user registration & login, persistent SQLite database, and order processing.
+            Your premier destination for high-performance audio, computing peripherals, ergonomic workspace furniture, and modern lifestyle apparel.
           </p>
-          <div class="codealpha-badge">
-            <span>🌐</span>
-            <a href="https://www.codealpha.tech" target="_blank" rel="noopener" style="color: inherit;">www.codealpha.tech</a>
-          </div>
         </div>
 
         <div class="footer-col">
-          <h5>Product Categories</h5>
+          <h5>Categories</h5>
           <ul>
             <li><a href="javascript:void(0)" onclick="Store.activeCategory='Electronics'; loadProducts();">Electronics & Audio</a></li>
             <li><a href="javascript:void(0)" onclick="Store.activeCategory='Accessories'; loadProducts();">Keyboards & Gadgets</a></li>
@@ -291,30 +286,30 @@
         </div>
 
         <div class="footer-col">
-          <h5>Quick Access</h5>
+          <h5>Customer Care</h5>
           <ul>
             <li><a href="/cart.html">Shopping Cart</a></li>
             <li><a href="/orders.html">Track Order</a></li>
-            <li><a href="javascript:void(0)" onclick="openAuthModal('login')">Customer Login</a></li>
-            <li><a href="javascript:void(0)" onclick="openAuthModal('register')">Register Account</a></li>
+            <li><a href="javascript:void(0)" onclick="openAuthModal('login')">My Account</a></li>
+            <li><a href="javascript:void(0)" onclick="openAuthModal('register')">Create Account</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h5>Task Tech Stack</h5>
+          <h5>Guaranteed Quality</h5>
           <ul>
-            <li>Frontend: HTML5, CSS3, ES6+ JavaScript</li>
-            <li>Backend: Node.js & Express.js</li>
-            <li>Database: Built-in SQLite (DatabaseSync)</li>
-            <li>Security: Bcrypt & JSON Web Tokens</li>
+            <li>Official 1-Year Warranty</li>
+            <li>Free 30-Day Returns</li>
+            <li>256-Bit SSL Encrypted Checkout</li>
+            <li>24/7 Dedicated Support</li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>&copy; 2026 CodeAlpha Internship Project. Built with high performance standards.</div>
-        <div>
-          Official site: <a href="https://www.codealpha.tech" target="_blank" rel="noopener" style="color: #38bdf8; text-decoration: underline;">www.codealpha.tech</a>
+        <div>&copy; 2026 AuraStore Technologies Inc. All rights reserved.</div>
+        <div style="color: #94a3b8; font-size: 0.8rem;">
+          Secure payments powered by Stripe, UPI & Card networks.
         </div>
       </div>
     </div>

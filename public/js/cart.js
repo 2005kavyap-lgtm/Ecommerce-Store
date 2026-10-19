@@ -20,17 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     applyPromoBtn.addEventListener('click', () => {
       const code = promoInput.value.trim().toUpperCase();
-      if (code === 'CODEALPHA') {
+      if (code === 'SAVE15' || code === 'CODEALPHA') {
         promoApplied = true;
         localStorage.setItem('ca_promo_applied', 'true');
-        showToast('Promo code CODEALPHA applied! 15% discount activated.', 'success');
+        showToast('Promo code applied! 15% discount activated.', 'success');
         renderFullCart();
       } else if (!code) {
         promoApplied = false;
         localStorage.removeItem('ca_promo_applied');
         renderFullCart();
       } else {
-        showToast('Invalid coupon code. Try "CODEALPHA"', 'error');
+        showToast('Invalid coupon code. Try "SAVE15"', 'error');
       }
     });
   }
