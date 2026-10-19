@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders & Shipment Tracking - CodeAlpha Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/product.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛍️</text></svg>">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span>✨ CodeAlpha Task Project • Track Your Order Status Anytime!</span>
+    <a href="https://www.codealpha.tech" target="_blank" rel="noopener">www.codealpha.tech</a>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="/index.html" class="brand-logo">
+        <div class="logo-icon">α</div>
+        <div>CodeAlpha<span class="highlight">Store</span><span class="brand-tag">Project</span></div>
+      </a>
+
+      <div class="nav-actions" style="margin-left: auto;">
+        <a href="/index.html" class="nav-link">
+          <span>🏠</span>
+          <span>Catalog</span>
+        </a>
+
+        <a href="/cart.html" class="nav-link">
+          <span>🛒</span>
+          <span>Cart</span>
+        </a>
+
+        <div id="userNavContainer">
+          <button class="btn btn-outline-primary btn-sm" id="openAuthModalBtn">
+            <span>👤</span> Sign In
+          </button>
+        </div>
+
+        <button class="btn-icon" id="openCartDrawerBtn" aria-label="View Shopping Cart">
+          <span>🛒</span>
+          <span class="cart-badge" id="navCartBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Title Banner -->
+  <div style="background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 1.75rem 0; margin-bottom: 2.5rem;">
+    <div class="container">
+      <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--text-main);">Order Tracking & History</h1>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">Track any package with your Order ID or view your past order receipts.</p>
+    </div>
+  </div>
+
+  <main class="container" style="margin-bottom: 4rem;">
+    <!-- Order Lookup Card (Available to Everyone) -->
+    <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm); max-width: 750px; margin: 0 auto 3rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Track Any Order (Live Lookup)</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Enter your order confirmation number (e.g., <strong>CA-760207</strong>) below to view package status and receipt:
+      </p>
+
+      <form id="orderTrackForm" style="display: flex; gap: 0.75rem;">
+        <input type="text" id="orderTrackInput" class="form-input" placeholder="e.g. CA-760207" required style="font-family: monospace; font-size: 1rem; text-transform: uppercase;">
+        <button type="submit" class="btn btn-primary" style="padding: 0 1.5rem;">
+          <span>🔍</span> Track Order
+        </button>
+      </form>
+
+      <div id="trackedOrderResult">
+        <!-- Rendered by orders.js -->
+      </div>
+    </div>
+
+    <!-- User Past Orders Section (Visible when logged in) -->
+    <div id="userOrdersSection" style="max-width: 900px; margin: 0 auto;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.25rem;">
+        <h2 style="font-size: 1.4rem; font-weight: 800;">My Order History</h2>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Stored securely in SQLite database</span>
+      </div>
+
+      <div class="orders-list" id="userOrdersList">
+        <!-- Injected by orders.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Slide-out Cart Drawer (Reusable) -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3><span>🛒</span> Your Shopping Cart</h3>
+      <button class="cart-close-btn" id="closeCartDrawerBtn">&times;</button>
+    </div>
+    <div class="cart-items-container" id="cartDrawerItems"></div>
+    <div class="cart-footer">
+      <div class="cart-summary-line total">
+        <span>Estimated Total</span>
+        <span id="cartDrawerTotal" style="color: var(--primary);">$0.00</span>
+      </div>
+      <a href="/cart.html" class="btn btn-primary btn-block">
+        Proceed to Checkout →
+      </a>
+    </div>
+  </aside>
+
+  <!-- Authentication Modal -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="authModalTitle">Welcome to CodeAlpha</h3>
+        <button class="modal-close-btn" id="closeAuthModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="loginTabBtn">Sign In</button>
+          <button class="auth-tab" id="regTabBtn">Create Account</button>
+        </div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" class="form-input" placeholder="alex@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+
+          <div class="demo-account-box">
+            <p>💡 Quick Test Credentials:</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button type="button" class="demo-fill-btn" onclick="fillDemoAccount('demo@codealpha.com', 'password123')">
+                👤 Customer: demo@codealpha.com
+              </button>
+              <button type="button" class="demo-fill-btn" onclick="fillDemoAccount('admin@codealpha.com', 'admin123')">
+                👑 Admin: admin@codealpha.com
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <form id="registerForm" style="display: none;">
+          <div class="form-group">
+            <label for="regName">Full Name</label>
+            <input type="text" id="regName" class="form-input" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="regEmail">Email Address</label>
+            <input type="email" id="regEmail" class="form-input" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="regPassword">Password (6+ chars)</label>
+            <input type="password" id="regPassword" class="form-input" placeholder="••••••••" required minlength="6">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Complete Registration</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CodeAlpha Internship Project. All rights reserved.</div>
+        <div>
+          Official site: <a href="https://www.codealpha.tech" target="_blank" rel="noopener" style="color: #38bdf8; text-decoration: underline;">www.codealpha.tech</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/app.js"></script>
+  <script src="/js/orders.js"></script>
+</body>
+</html>

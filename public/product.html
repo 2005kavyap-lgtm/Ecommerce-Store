@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - CodeAlpha Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/product.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛍️</text></svg>">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span>✨ CodeAlpha Task Project • Free Shipping on orders over $100!</span>
+    <span>Use code <span class="badge-code">CODEALPHA</span> for 15% OFF</span>
+    <a href="https://www.codealpha.tech" target="_blank" rel="noopener">www.codealpha.tech</a>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="/index.html" class="brand-logo">
+        <div class="logo-icon">α</div>
+        <div>CodeAlpha<span class="highlight">Store</span><span class="brand-tag">Project</span></div>
+      </a>
+
+      <form class="nav-search-form" action="/index.html" method="GET">
+        <span class="search-icon">🔍</span>
+        <input type="text" name="search" placeholder="Search other products..." autocomplete="off">
+      </form>
+
+      <div class="nav-actions">
+        <a href="/index.html" class="nav-link">
+          <span>🏠</span>
+          <span>Catalog</span>
+        </a>
+
+        <a href="/orders.html" class="nav-link">
+          <span>📦</span>
+          <span>Orders</span>
+        </a>
+
+        <div id="userNavContainer">
+          <button class="btn btn-outline-primary btn-sm" id="openAuthModalBtn">
+            <span>👤</span> Sign In
+          </button>
+        </div>
+
+        <button class="btn-icon" id="openCartDrawerBtn" aria-label="View Shopping Cart">
+          <span>🛒</span>
+          <span class="cart-badge" id="navCartBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="container">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb-nav">
+      <a href="/index.html">Store Home</a>
+      <span class="breadcrumb-separator">›</span>
+      <a href="/index.html" id="breadcrumbCategory">Category</a>
+      <span class="breadcrumb-separator">›</span>
+      <span id="breadcrumbTitle" style="color: var(--text-main); font-weight: 600;">Product</span>
+    </nav>
+
+    <!-- Product Details Content Injected dynamically -->
+    <div id="productDetailContent">
+      <div style="text-align: center; padding: 4rem 1rem;">
+        <p style="color: var(--text-muted); font-size: 1.1rem;">Loading product specifications...</p>
+      </div>
+    </div>
+
+    <!-- Related Products Section -->
+    <section id="relatedSection" style="display: none; margin-bottom: 4rem;">
+      <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem;">You Might Also Like</h3>
+      <div class="product-grid" id="relatedProductsGrid">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3><span>🛒</span> Your Shopping Cart</h3>
+      <button class="cart-close-btn" id="closeCartDrawerBtn">&times;</button>
+    </div>
+    
+    <div class="cart-items-container" id="cartDrawerItems">
+      <!-- Items dynamically injected -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <span id="cartDrawerSubtotal">$0.00</span>
+      </div>
+      <div class="cart-summary-line total">
+        <span>Estimated Total</span>
+        <span id="cartDrawerTotal" style="color: var(--primary);">$0.00</span>
+      </div>
+      <a href="/cart.html" class="btn btn-primary btn-block" id="cartDrawerCheckoutBtn">
+        Proceed to Checkout →
+      </a>
+    </div>
+  </aside>
+
+  <!-- Authentication Modal -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="authModalTitle">Welcome to CodeAlpha</h3>
+        <button class="modal-close-btn" id="closeAuthModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="loginTabBtn">Sign In</button>
+          <button class="auth-tab" id="regTabBtn">Create Account</button>
+        </div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" class="form-input" placeholder="alex@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+
+          <div class="demo-account-box">
+            <p>💡 Quick Test Credentials:</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button type="button" class="demo-fill-btn" onclick="fillDemoAccount('demo@codealpha.com', 'password123')">
+                👤 Customer: demo@codealpha.com
+              </button>
+              <button type="button" class="demo-fill-btn" onclick="fillDemoAccount('admin@codealpha.com', 'admin123')">
+                👑 Admin: admin@codealpha.com
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <form id="registerForm" style="display: none;">
+          <div class="form-group">
+            <label for="regName">Full Name</label>
+            <input type="text" id="regName" class="form-input" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="regEmail">Email Address</label>
+            <input type="email" id="regEmail" class="form-input" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="regPassword">Password (6+ chars)</label>
+            <input type="password" id="regPassword" class="form-input" placeholder="••••••••" required minlength="6">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Complete Registration</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CodeAlpha Internship Project. All rights reserved.</div>
+        <div>
+          Official site: <a href="https://www.codealpha.tech" target="_blank" rel="noopener" style="color: #38bdf8; text-decoration: underline;">www.codealpha.tech</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/app.js"></script>
+  <script src="/js/product.js"></script>
+</body>
+</html>

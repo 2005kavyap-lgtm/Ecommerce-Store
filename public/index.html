@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeAlpha Store - Modern E-Commerce Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛍️</text></svg>">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span>✨ CodeAlpha Task Project • Free Worldwide Shipping on orders over $100!</span>
+    <span>Use code <span class="badge-code">CODEALPHA</span> for 15% OFF</span>
+    <a href="https://www.codealpha.tech" target="_blank" rel="noopener">www.codealpha.tech</a>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <!-- Logo -->
+      <a href="/index.html" class="brand-logo">
+        <div class="logo-icon">α</div>
+        <div>CodeAlpha<span class="highlight">Store</span><span class="brand-tag">Project</span></div>
+      </a>
+
+      <!-- Search Bar -->
+      <form class="nav-search-form" id="navSearchForm">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="navSearchInput" placeholder="Search headphones, keyboards, watches, apparel..." autocomplete="off">
+      </form>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <a href="/orders.html" class="nav-link">
+          <span>📦</span>
+          <span>Orders</span>
+        </a>
+
+        <a href="/download" class="btn btn-secondary btn-sm" title="Download project files as ZIP" download>
+          <span>📥</span> Download ZIP
+        </a>
+
+        <!-- User Profile / Auth Button -->
+        <div id="userNavContainer">
+          <button class="btn btn-outline-primary btn-sm" id="openAuthModalBtn">
+            <span>👤</span> Sign In
+          </button>
+        </div>
+
+        <!-- Cart Button -->
+        <button class="btn-icon" id="openCartDrawerBtn" aria-label="View Shopping Cart">
+          <span>🛒</span>
+          <span class="cart-badge" id="navCartBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="container hero-content">
+      <div>
+        <div class="hero-pill">
+          <span class="dot"></span>
+          <span>Official Task Showcase • www.codealpha.tech</span>
+        </div>
+        <h1 class="hero-title">
+          Next-Gen Essentials, <br>
+          <span class="gradient-text">Engineered for Life.</span>
+        </h1>
+        <p class="hero-desc">
+          Discover hand-crafted tech, ergonomic gear, and timeless lifestyle essentials. Built with modern full-stack performance.
+        </p>
+        <div class="hero-btns">
+          <a href="#catalogSection" class="btn btn-primary btn-lg">
+            <span>🛍️</span> Explore Catalog
+          </a>
+          <button class="btn btn-secondary btn-lg" onclick="openAuthModal('login')">
+            <span>🔑</span> Test Demo Account
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-feature-card">
+        <h3>⚡ CodeAlpha Features</h3>
+        <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 1rem;">
+          Full-featured e-commerce solution with dynamic cart, persistent SQLite DB, and real-time checkout.
+        </p>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-value">12+</div>
+            <div class="hero-stat-label">Products</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">4.8★</div>
+            <div class="hero-stat-label">User Rating</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">Instant</div>
+            <div class="hero-stat-label">Order Sync</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Store Section -->
+  <main class="container" id="catalogSection">
+    <div class="catalog-header">
+      <div class="catalog-title-wrap">
+        <div>
+          <h2>Featured Products</h2>
+          <p>Curated premium tech, gadgets, lifestyle accessories & fashion</p>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="category-pills" id="categoryPills">
+        <button class="cat-pill active" data-category="all">✨ All Products</button>
+        <button class="cat-pill" data-category="Electronics">🎧 Electronics</button>
+        <button class="cat-pill" data-category="Accessories">⌨️ Accessories</button>
+        <button class="cat-pill" data-category="Fashion">🕶️ Fashion</button>
+        <button class="cat-pill" data-category="Home & Living">☕ Home & Living</button>
+      </div>
+    </div>
+
+    <!-- Filter & Sort Toolbar -->
+    <div class="filter-toolbar">
+      <div class="results-count" id="resultsCount">Loading products...</div>
+      
+      <div class="filter-group">
+        <label for="sortSelect" class="filter-label">Sort by:</label>
+        <select id="sortSelect" class="select-custom">
+          <option value="default">Featured / Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Highest Rated</option>
+          <option value="newest">Newest Arrivals</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="productGrid">
+      <!-- Injected dynamically by app.js -->
+    </div>
+  </main>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3><span>🛒</span> Your Shopping Cart</h3>
+      <button class="cart-close-btn" id="closeCartDrawerBtn">&times;</button>
+    </div>
+    
+    <div class="cart-items-container" id="cartDrawerItems">
+      <!-- Items dynamically injected -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <span id="cartDrawerSubtotal">$0.00</span>
+      </div>
+      <div class="cart-summary-line total">
+        <span>Estimated Total</span>
+        <span id="cartDrawerTotal" style="color: var(--primary);">$0.00</span>
+      </div>
+      <a href="/cart.html" class="btn btn-primary btn-block" id="cartDrawerCheckoutBtn">
+        Proceed to Checkout →
+      </a>
+    </div>
+  </aside>
+
+  <!-- Authentication Modal (Login / Register) -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="authModalTitle">Welcome to CodeAlpha</h3>
+        <button class="modal-close-btn" id="closeAuthModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="loginTabBtn">Sign In</button>
+          <button class="auth-tab" id="regTabBtn">Create Account</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" class="form-input" placeholder="alex@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+
+          <!-- Quick Demo Buttons -->
+          <div class="demo-account-box">
+            <p>💡 Quick Test Credentials:</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button type="button" class="demo-fill-btn" onclick="fillDemoAccount('demo@codealpha.com', 'password123')">
+                👤 Customer: demo@codealpha.com
+              </button>
+              <button type="button" class="demo-fill-btn" onclick="fillDemoAccount('admin@codealpha.com', 'admin123')">
+                👑 Admin: admin@codealpha.com
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Register Form -->
+        <form id="registerForm" style="display: none;">
+          <div class="form-group">
+            <label for="regName">Full Name</label>
+            <input type="text" id="regName" class="form-input" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="regEmail">Email Address</label>
+            <input type="email" id="regEmail" class="form-input" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="regPassword">Password (6+ chars)</label>
+            <input type="password" id="regPassword" class="form-input" placeholder="••••••••" required minlength="6">
+          </div>
+          <div class="form-group">
+            <label for="regPhone">Phone Number</label>
+            <input type="tel" id="regPhone" class="form-input" placeholder="+1 (555) 019-2834">
+          </div>
+          <div class="form-group">
+            <label for="regAddress">Shipping Street Address</label>
+            <input type="text" id="regAddress" class="form-input" placeholder="123 Market Street">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+            <div class="form-group">
+              <label for="regCity">City</label>
+              <input type="text" id="regCity" class="form-input" placeholder="San Francisco">
+            </div>
+            <div class="form-group">
+              <label for="regPostalCode">Postal Code</label>
+              <input type="text" id="regPostalCode" class="form-input" placeholder="94103">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Complete Registration</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div class="modal-overlay" id="quickViewModal">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <h3>Product Preview</h3>
+        <button class="modal-close-btn" id="closeQuickViewBtn">&times;</button>
+      </div>
+      <div class="modal-body" id="quickViewModalBody">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>CodeAlpha E-Commerce Store</h4>
+          <p>
+            An end-to-end e-commerce store with product listings, dedicated product pages, shopping cart, user registration & login, persistent SQLite database, and order processing.
+          </p>
+          <div class="codealpha-badge">
+            <span>🌐</span>
+            <a href="https://www.codealpha.tech" target="_blank" rel="noopener" style="color: inherit;">www.codealpha.tech</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Product Categories</h5>
+          <ul>
+            <li><a href="javascript:void(0)" onclick="Store.activeCategory='Electronics'; loadProducts();">Electronics & Audio</a></li>
+            <li><a href="javascript:void(0)" onclick="Store.activeCategory='Accessories'; loadProducts();">Keyboards & Gadgets</a></li>
+            <li><a href="javascript:void(0)" onclick="Store.activeCategory='Fashion'; loadProducts();">Fashion & Apparel</a></li>
+            <li><a href="javascript:void(0)" onclick="Store.activeCategory='Home & Living'; loadProducts();">Home & Living</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Quick Access</h5>
+          <ul>
+            <li><a href="/cart.html">Shopping Cart</a></li>
+            <li><a href="/orders.html">Track Order</a></li>
+            <li><a href="javascript:void(0)" onclick="openAuthModal('login')">Customer Login</a></li>
+            <li><a href="javascript:void(0)" onclick="openAuthModal('register')">Register Account</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Task Tech Stack</h5>
+          <ul>
+            <li>Frontend: HTML5, CSS3, ES6+ JavaScript</li>
+            <li>Backend: Node.js & Express.js</li>
+            <li>Database: Built-in SQLite (DatabaseSync)</li>
+            <li>Security: Bcrypt & JSON Web Tokens</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 CodeAlpha Internship Project. Built with high performance standards.</div>
+        <div>
+          Official site: <a href="https://www.codealpha.tech" target="_blank" rel="noopener" style="color: #38bdf8; text-decoration: underline;">www.codealpha.tech</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/app.js"></script>
+</body>
+</html>
